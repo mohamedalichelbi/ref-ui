@@ -20,7 +20,7 @@ import TokenAmount from '../forms/TokenAmount';
 import Alert from '../alert/Alert';
 import SlippageSelector from '../forms/SlippageSelector';
 import copy from '../../utils/copy';
-import Icon from '~components/tokens/Icon';
+import Icon from '../tokens/Icon';
 
 const SWAP_IN_KEY = 'REF_FI_SWAP_IN';
 const SWAP_OUT_KEY = 'REF_FI_SWAP_OUT';
