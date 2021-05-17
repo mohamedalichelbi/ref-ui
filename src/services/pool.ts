@@ -13,7 +13,7 @@ import { toNonDivisibleNumber } from '../utils/numbers';
 import { storageDepositForFTAction } from './creators/storage';
 
 export const DEFAULT_PAGE_LIMIT = 100;
-export const LP_STORAGE_AMOUNT = '0.0067';
+export const LP_STORAGE_AMOUNT = '0.00128';
 
 interface PoolRPCView {
   token_account_ids: string[];
