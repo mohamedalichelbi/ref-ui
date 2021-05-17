@@ -40,7 +40,7 @@ describe('PoolPage', () => {
         {
           methodName: 'add_liquidity',
           args: { amounts: ['200000', '10000000000'], pool_id: null },
-          amount: '1',
+          amount: '1280000000000000000000',
           gas: '30000000000000',
         },
       ]);
