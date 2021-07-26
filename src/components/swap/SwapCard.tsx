@@ -74,6 +74,7 @@ function DetailView({
 export default function SwapCard(props: { allTokens: TokenMetadata[] }) {
   const { allTokens } = props;
   const [tokenIn, setTokenIn] = useState<TokenMetadata>();
+  const [liveTokenInAmount, setLiveTokenInAmount] = useState<string>('1');
   const [tokenInAmount, setTokenInAmount] = useState<string>('');
   const [tokenOut, setTokenOut] = useState<TokenMetadata>();
   const [slippageTolerance, setSlippageTolerance] = useState<number>(0.5);
@@ -82,6 +83,14 @@ export default function SwapCard(props: { allTokens: TokenMetadata[] }) {
   const history = useHistory();
 
   const balances = useTokenBalances();
+
+  useEffect(() => {
+    const timeOutId = setTimeout(
+      () => setTokenInAmount(liveTokenInAmount),
+      500
+    );
+    return () => clearTimeout(timeOutId);
+  }, [liveTokenInAmount]);
 
   useEffect(() => {
     const [urlTokenIn, urlTokenOut] = decodeURIComponent(
@@ -141,7 +150,7 @@ export default function SwapCard(props: { allTokens: TokenMetadata[] }) {
         {swapError && <Alert level="error" message={swapError.message} />}
       </div>
       <TokenAmount
-        amount={tokenInAmount}
+        amount={liveTokenInAmount}
         total={tokenInMax}
         max={tokenInMax}
         tokens={allTokens}
@@ -153,7 +162,7 @@ export default function SwapCard(props: { allTokens: TokenMetadata[] }) {
           setTokenIn(token);
         }}
         text="From"
-        onChangeAmount={setTokenInAmount}
+        onChangeAmount={(amount) => setLiveTokenInAmount(amount)}
       />
       <div
         className="flex items-center justify-center"
